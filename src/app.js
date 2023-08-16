@@ -1,9 +1,13 @@
 import express from "express";
-const app = express();
 import 'dotenv/config';
-import {pool} from './db.js';
+import employeesRoutes from './routes/employees.routes.js'
 
+const app = express();
 const PORT = process.env.PORT
+
+app.use(express.json());
+
+app.use(employeesRoutes)
 
 app.get('/ping', (req, res) => {
     res.send('pong')
