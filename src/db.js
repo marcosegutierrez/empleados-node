@@ -1,4 +1,4 @@
-import {createPool} from "mysql2/promise";
+import { createPool } from 'mysql2/promise';
 import 'dotenv/config';
 
 const DB_HOST = process.env.DB_HOST;
