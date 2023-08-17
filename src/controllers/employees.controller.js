@@ -5,8 +5,14 @@ export const getEmployees = async (req, res) => {
     res.json(data[0]);
 }
 
-export const postEmployees = (req, res) => {
-    res.send('Creando empleado');
+export const postEmployees = async (req, res) => {
+    const { name, salary } = req.body;
+    const [data] = await pool.query('INSERT INTO employees(name, salary) VALUES (?,?)', [name, salary]);
+    res.send({
+        id: data.insertId,
+        name,
+        salary,
+    });
 }
 
 export const putEmployees = (req, res) => {
