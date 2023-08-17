@@ -1,8 +1,14 @@
 import { pool } from '../db.js';
 
 export const getEmployees = async (req, res) => {
-    const data = await pool.query('SELECT * FROM employees');
-    res.json(data[0]);
+    const [data] = await pool.query('SELECT * FROM employees');
+    res.json(data);
+}
+
+export const getEmployee = async (req, res) => {
+    const id = req.params.id;
+    const [data] = await pool.query(`SELECT * FROM employees WHERE id = ${id}`);
+    res.json(data);
 }
 
 export const postEmployees = async (req, res) => {
