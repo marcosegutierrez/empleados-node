@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
     deleteEmployees,
     getEmployee,
-    getEmployees, postEmployees, putEmployees
+    getEmployees, postEmployees, patchEmployees
 } from '../controllers/employees.controller.js'
 
 const router = Router();
@@ -13,7 +13,7 @@ router.get('/employees/:id', getEmployee);
 
 router.post('/employees', postEmployees);
 
-router.put('/employees', putEmployees);
+router.patch('/employees/:id', patchEmployees);
 
 router.delete('/employees/:id', deleteEmployees);
 
