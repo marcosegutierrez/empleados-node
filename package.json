@@ -2,10 +2,10 @@
   "name": "empleados-node",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/app"
+    "dev": "nodemon src/index"
   },
   "keywords": [],
   "author": "",
