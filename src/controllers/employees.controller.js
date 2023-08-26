@@ -51,6 +51,26 @@ export const patchEmployees = async (req, res) => {
     }
 }
 
+export const putEmployees = async (req, res) => {
+    const {id} = req.params;
+    let {name, salary, newId} = req.body;
+    try {
+        const [result] = await pool.query(`
+        UPDATE employees SET
+            name = COALESCE(?, name),
+            salary = COALESCE(?, salary),
+            id = COALESCE(?, id)
+        WHERE id = ?`, [name, salary, newId, id]);
+        if (result.affectedRows === 0)
+            return res.status(404).json({ message: 'Empleado no encontrado'});
+        if (!newId) newId = id;
+        const [data] = await pool.query(`SELECT * FROM employees WHERE id = ?`, [newId]);
+        res.json(data[0]);
+    } catch (error) {
+        return res.status(500).json({ message: 'Algo salió mal'});
+    }
+}
+
 export const deleteEmployees = async (req, res) => {
     const id = req.params.id;
     try {
